@@ -1,5 +1,5 @@
 import React from "react";
-
+// archit
 const Footer = () => {
   return (
     <section className="bg-transparent">
