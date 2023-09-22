@@ -70,7 +70,7 @@ function Login() {
                   htmlFor="email"
                   className="block font-medium text-gray-700 dark:text-white"
                 >
-                  Unique Court Identification Number
+                  Unique ID Provided by BlockVault
                 </label>
                 <input
                   onChange={(e) => {
@@ -88,7 +88,7 @@ function Login() {
                   htmlFor="password"
                   className="block font-medium text-gray-700 dark:text-white"
                 >
-                  Unique Court Identification Secrect Key
+                  Password
                 </label>
                 <input
                   onChange={(e) => {
@@ -109,6 +109,9 @@ function Login() {
               <a href="#" className="text-blue-500 hover:underline">
                 Forgot password?
               </a> */}
+                <a href="#" className="text-blue-500 hover:underline">
+                  Forgot password?
+                </a>
               </div>
               <button
                 onClick={(e) => {
@@ -135,7 +138,7 @@ function Login() {
         </div>
 
         {/* Right Column (Description) */}
-        <div className="md:w-1/2 bg-gradient-to-r from-cyan-500  to-green-700  p-6 flex items-center justify-center">
+        <div className="md:w-1/2 bg-gradient-to-r from-pink-500  to-violet-700  p-6 flex items-center justify-center">
           {/* <ul class="circles  -z-50 ">
           
           <li></li>
@@ -151,11 +154,12 @@ function Login() {
         </ul> */}
           <div className="max-w-md mx-auto  ">
             <h2 className="text-5xl font-semibold mb-4 text-white">
-              Courts Section
+              Lawyer's Section
             </h2>
             <p className="text-gray-200">
-              Login to the official Courts of India with the provided username
-              and password to upload and manage court case documents
+              Login to the your Personal Dashboard to manage your court cases
+              and be updated with all the documents regarding the cases in a
+              safe and secure way
             </p>
           </div>
         </div>

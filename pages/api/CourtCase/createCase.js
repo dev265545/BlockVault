@@ -4,50 +4,17 @@ const prisma = new PrismaClient();
 
 export default async function handler(req, res) {
   if (req.method === "POST") {
-    const {
-      CNR_Number,
-      CaseType,
-      FilingNumber,
-      FilingDate,
-      RegistrationNumber,
-      RegistrationDate,
-      PetitionersAndAdvocates,
-      RespondentAndAdvocates,
-      UnderActs,
-      UnderSection,
-      FirstHearingDate,
-      CourtName,
-      CourtID,
-      NextHearingDate,
-      StageOfCase,
-      MainCaseNo,
-      HistoryofCaseHearing,
-      LastHearingDate,
-      CaseName,
-    } = req.body;
+    const { CNR_Number, textfile, judgeid, aadharid, lawyerid } = req.body;
 
     try {
       const newCourtCase = await prisma.courtCase.create({
         data: {
           CNR_Number,
-          CaseType,
-          FilingNumber,
-          FilingDate: new Date(FilingDate),
-          RegistrationNumber,
-          RegistrationDate: new Date(RegistrationDate),
-          PetitionersAndAdvocates,
-          RespondentAndAdvocates,
-          UnderActs,
-          UnderSection,
-          FirstHearingDate: new Date(FirstHearingDate),
-          CourtName,
-          CourtID,
-          NextHearingDate: new Date(NextHearingDate),
-          StageOfCase,
-          MainCaseNo,
-          HistoryofCaseHearing: HistoryofCaseHearing,
-          LastHearingDate: new Date(LastHearingDate),
-          CaseName,
+          judgeid,
+          aadharid,
+          lawyerid,
+
+          textfile,
         },
       });
 

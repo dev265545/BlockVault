@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import Link from "next/link";
 import axios from "axios";
 import { useRouter } from "next/router";
+import DoubleNavbar from "../../Components/DoubleNavbar";
 
 function Login() {
   const router = useRouter();

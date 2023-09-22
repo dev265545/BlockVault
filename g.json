@@ -1,0 +1,94 @@
+{
+//   "CNR_Number": "CNR1c2V3451",
+//   "CaseType": "Civil",
+//   "FilingNumber": "FN67890",
+//   "FilingDate": "2023-09-21T00:00:00Z",
+//   "RegistrationNumber": "RN45678",
+//   "RegistrationDate": "2023-09-22T00:00:00Z",
+  "PetitionersAndAdvocates": {
+    "petitioner": [
+      {
+        "Name": "DEV GUPTA",
+        "eMAIL": "EMAIL",
+        "PHONE": "222",
+        "ADDHAR": "212323"
+      },
+      {
+        "Name": "DEV GUPTA",
+        "eMAIL": "EMAIL",
+        "PHONE": "222",
+        "ADDHAR": "212323"
+      }
+    ],
+    "advocate": [
+      {
+        "Name": "DEV GUPTA",
+        "eMAIL": "EMAIL",
+        "PHONE": "222",
+        "ADDHAR": "212323"
+      },
+      {
+        "Name": "DEV GUPTA",
+        "eMAIL": "EMAIL",
+        "PHONE": "222",
+        "ADDHAR": "212323"
+      }
+    ]
+  },
+  "RespondentAndAdvocates": {
+    "respondent": [
+      {
+        "Name": "DEV GUPTA",
+        "eMAIL": "EMAIL",
+        "PHONE": "222",
+        "ADDHAR": "212323"
+      },
+      {
+        "Name": "DEV GUPTA",
+        "eMAIL": "EMAIL",
+        "PHONE": "222",
+        "ADDHAR": "212323"
+      }
+    ],
+    "advocate": [
+      {
+        "Name": "DEV GUPTA",
+        "eMAIL": "EMAIL",
+        "PHONE": "222",
+        "ADDHAR": "212323"
+      },
+      {
+        "Name": "DEV GUPTA",
+        "eMAIL": "EMAIL",
+        "PHONE": "222",
+        "ADDHAR": "212323"
+      }
+    ]
+  },
+  "UnderActs": ["Act1", "Act2"],
+  "UnderSection": ["Section1", "Section2"],
+//   "FirstHearingDate": "2023-09-30T00:00:00Z",
+  "CourtName": "District Court",
+  "CourtID": "COURT123",
+//   "NextHearingDate": "2023-10-15T00:00:00Z",
+  "StageOfCase": "Pending",
+  "MainCaseNo": "MCN123",
+  "HistoryofCaseHearing": {
+    "HEARING": [
+      {
+        "judge": "Judge Smith",
+        "businessOnDate": "2023-09-25T00:00:00Z",
+        "hearingDate": "2023-10-05T00:00:00Z",
+        "purposeOfHearing": "Pre-trial conference"
+      },
+      {
+        "judge": "Judge Smith",
+        "businessOnDate": "2023-09-25T00:00:00Z",
+        "hearingDate": "2023-10-05T00:00:00Z",
+        "purposeOfHearing": "Pre-trial conference"
+      }
+    ]
+  },
+  "LastHearingDate": "2023-10-01T00:00:00Z",
+  "CaseName": "Doe vs. Johnson"
+}
