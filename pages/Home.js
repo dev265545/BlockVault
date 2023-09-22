@@ -1,5 +1,5 @@
-import React from "react";
-
+import React, { useContext, useState } from "react";
+import { AgreementContext } from "../Context/AgreementProvider.js";
 import Image from "next/image";
 // import { Link } from "react-router-dom";
 import Footer from "../Components/Footer";
@@ -9,9 +9,23 @@ import bg from "../public/contract.svg";
 // import ReactTyped from "react-typed";
 import Typewriter from "../Components/TypeWriter";
 import next from "next";
-const Home = () => {
+import Wallet from "../Components/Wallet.jsx";
+const Landing = () => {
   const arr = [1, 2, 3];
+  const [data, setData] = useState({ desc: "" });
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    createAgreement(data);
+  };
+  const handleChange = async (e) => {
+    setData((prev) => {
+      console.log(e.target.value);
+      return { ...prev, [e.target.name]: e.target.value };
+    });
+  };
   //   const currentUser = JSON.parse(localStorage.getItem("currentUser"));
+  const { currentAccount, connectWallet, createAgreement } =
+    useContext(AgreementContext);
 
   return (
     <>
@@ -53,6 +67,29 @@ const Home = () => {
                   delay={1}
                 />
               </div>
+              <Wallet
+                currentAccount={currentAccount}
+                connectWallet={connectWallet}
+              />
+              {/* <div>
+                {!currentAccount ? (
+                  <button
+                    onClick={() => connectWallet()}
+                    className="inline-flex items-center justify-center h-12 px-6 font-medium tracking-wide text-white transition duration-200 rounded shadow-md bg-red-400 hover:bg-red-700 focus:shadow-outline focus:outling-none background"
+                    title="Connect your Metamask wallet"
+                  >
+                    Connect Wallet
+                  </button>
+                ) : (
+                  <button
+                    disabled
+                    className="inline-flex items-center justify-center h-12 px-6 font-medium tracking-wide text-white transition duration-200 rounded shadow-md bg-green-400 hover:bg-green-700 focus:shadow-outline focus:outling-none background"
+                    title="Connect your Metamask wallet"
+                  >
+                    Connected
+                  </button>
+                )}
+              </div> */}
               {/* <div>
                 <ReactTyped
                   strings={[
@@ -81,6 +118,10 @@ const Home = () => {
               }
             </div>
           </div>
+          <form onSubmit={handleSubmit}>
+            <input type="text" name="desc" onChange={handleChange} />
+            <button type="submit">Submit</button>
+          </form>
           <Footer />
         </div>
       </div>
@@ -90,4 +131,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default Landing;
