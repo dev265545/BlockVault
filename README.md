@@ -1,3 +1,9 @@
+For the BlockVault Encryption Implementation -> Head over to -> https://github.com/dev265545/blockvault_encryption
+
+This project is using Deployed Vercel Postgres Database the keys and everthing is store in the .env file.
+It uses Ganache and MetaMask for development in  Etherum and Solidity, so one will have to install and setup that to run.
+
+
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
