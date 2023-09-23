@@ -1,38 +1,107 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import axios from "axios";
 import { useRouter } from "next/router";
 import WalletModal from "../../Components/WalletModal";
 import DoubleNavbar from "../../Components/DoubleNavbar";
-
+import { ethers } from "ethers";
+import Contract from "../../artifacts/contracts/Contract.sol/Contract.json";
 function Login() {
   const router = useRouter();
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
   const [modal, setModal] = useState(true);
   const [walletOpen, setWalletOpen] = useState(false);
+  const [account, setAccount] = useState("");
+  const [contract, setContract] = useState(null);
+  const [contract2, setContract2] = useState(null);
+  const [reg, setReg] = useState(false);
+  const [provider, setProvider] = useState(null);
+  const [modalOpen, setModalOpen] = useState(false);
+  // const [provider, setProvider] = useState(null);
+  // const [account, setAccount] = useState(null);
+  const connectWallet = async () => {
+    if (window.ethereum) {
+      const provider = new ethers.providers.Web3Provider(window.ethereum);
+      const accounts = await window.ethereum.request({
+        method: "eth_requestAccounts",
+      });
+      const account = accounts[0];
+      setProvider(provider);
+      setAccount(account);
+    } else {
+      alert("Please install MetaMask to use this feature");
+    }
+  };
+
+  useEffect(() => {
+    if (window.ethereum) {
+      window.ethereum.on("accountsChanged", (accounts) => {
+        if (accounts.length > 0) {
+          setAccount(accounts[0]);
+        } else {
+          setAccount(null);
+        }
+      });
+    }
+  }, []);
+
+  useEffect(() => {
+    console.log(account);
+    const provider = new ethers.providers.Web3Provider(window.ethereum);
+    const wallet = async () => {
+      if (provider) {
+        await provider.send("eth_requestAccounts", []);
+        const signer = provider.getSigner();
+        const address = await signer.getAddress();
+        console.log(address);
+        setAccount(address);
+
+        // const contractAddress = "0xda07bd614c978c0adea69aa14ce672709205469a";
+        // const contract = new ethers.Contract(
+        //   contractAddress,
+        //   Upload.abi,
+        //   signer
+        // );
+        const profile = new ethers.Contract(
+          "0x165D3581bb2d1B4486Ee84aaBF9aA1F84d7b5AFf",
+          Contract.abi,
+          signer
+        );
+
+        console.log(profile);
+        // setContract(contract);
+        setContract2(profile);
+        setProvider(signer);
+      } else {
+        alert("Metamask not installed");
+      }
+    };
+
+    provider && wallet();
+  }, []);
   const handleSubmit = (e) => {
     console.log("dd");
     e.preventDefault();
 
     const data = {
-      Email: email,
+      Id: email,
 
       Password: password,
     };
 
     axios
-      .post("/api/Judge/findJudge", data)
+      .post("/api/Court/Login", data)
       .then((response) => {
         console.log(response.data);
 
         setEmail("");
 
         setPassword("");
-        const judgeId = response.data.judge.id;
+        const judgeId = response.data.Court.id;
 
-        router.push(`/Judge/${judgeId}`);
+        router.push(`/Court/${judgeId}/Upload`);
       })
       .catch((error) => {
         console.error(error);
@@ -80,7 +149,7 @@ function Login() {
                   type="email"
                   id="email"
                   className="w-full px-4 py-2 border rounded-md dark:bg-gray-700 dark:text-white focus:outline-none focus:ring focus:border-blue-500"
-                  placeholder="Enter your email"
+                  placeholder=""
                 />
               </div>
               <div>
@@ -238,7 +307,12 @@ function Login() {
             </div>
           </div>
         )}
-        {walletOpen && <WalletModal setWalletOpen={setWalletOpen} />}
+        {walletOpen && (
+          <WalletModal
+            setWalletOpen={setWalletOpen}
+            connectWallet={connectWallet()}
+          />
+        )}
         <div style={{ position: "fixed", top: 0, right: 0, margin: "1rem" }}>
           <button
             onClick={() => {

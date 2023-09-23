@@ -9,7 +9,7 @@ function CourtDashboard() {
   const { Id } = router.query;
   return (
     <div className="bg-gray-900 min-h-screen">
-      <DoubleNavbar />
+      {/* <DoubleNavbar /> */}
       <div className="flex bg-gray-900 ">
         <div className="flex-1 grid grid-cols-2">
           <div className="p-12">

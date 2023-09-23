@@ -7,7 +7,7 @@ export default async function handler(req, res) {
     const { Id, Password } = req.body;
 
     try {
-      const user = await prisma.Court.findUnique({
+      const user = await prisma.Lawyer.findUnique({
         where: {
           Id,
         },
@@ -18,7 +18,7 @@ export default async function handler(req, res) {
         res.status(200).json({
           message: "Login successful",
           Court: {
-            id: user.UniqueId,
+            id: user.LawyerId,
 
             // Include other fields as needed
           },

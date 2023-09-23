@@ -17,22 +17,22 @@ function Login() {
     e.preventDefault();
 
     const data = {
-      Email: email,
+      Id: email,
 
       Password: password,
     };
 
     axios
-      .post("/api/Judge/findJudge", data)
+      .post("/api/Lawyer/Login", data)
       .then((response) => {
         console.log(response.data);
 
         setEmail("");
 
         setPassword("");
-        const judgeId = response.data.judge.id;
+        const judgeId = response.data.Court.id;
 
-        router.push(`/Judge/${judgeId}`);
+        router.push(`/Lawyer/${judgeId}`);
       })
       .catch((error) => {
         console.error(error);

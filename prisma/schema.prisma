@@ -28,8 +28,36 @@ model Judge {
   // DateofBirth   DateTime 
   JudgeId   String   @unique
   Password  String
+
+}
+model Client {
+  Id        String   @id @default(cuid())
+  Name      String?
+  Email     String?  @unique
+  CreatedAt DateTime @default(now()) @map(name: "created_at")
+  UpdatedAt DateTime @updatedAt @map(name: "updated_at")
+  // DateofBirth   DateTime 
+ 
+  Password  String
   PhoneNo   String
   AadhaarId String   @unique
+}
+model Lawyer {
+  Id        String   @id @default(cuid())
+  Name      String?
+  Email     String?  @unique
+  CreatedAt DateTime @default(now()) @map(name: "created_at")
+  UpdatedAt DateTime @updatedAt @map(name: "updated_at")
+  // DateofBirth   DateTime 
+  LawyerId   String   @unique
+  Password  String
+ 
+}
+model Court {
+  Id        String   @id @default(cuid())
+  UniqueId String
+  Password  String
+ 
 }
 
 // model History {
@@ -45,24 +73,10 @@ model Judge {
 model CourtCase {
   Id                      String    @id @default(cuid())
   CNR_Number              String    @unique
-  CaseType                String
-  FilingNumber            String
-  FilingDate              DateTime
-  RegistrationNumber      String
-  RegistrationDate        DateTime
-  PetitionersAndAdvocates Json?
-  RespondentAndAdvocates  Json?
-  UnderActs               String[]
-  UnderSection            String[]
-  FirstHearingDate        DateTime?
-  CourtName               String
-  CourtID                 String
-  NextHearingDate         DateTime?
-  StageOfCase             String?
-  MainCaseNo              String?
-  HistoryofCaseHearing    Json?
-  LastHearingDate         DateTime?
-  CaseName                String?
+  DocLink String  
+
+
+ 
 
   
   CreatedAt DateTime @default(now()) @map(name: "created_at")
