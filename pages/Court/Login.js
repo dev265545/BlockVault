@@ -307,16 +307,11 @@ function Login() {
             </div>
           </div>
         )}
-        {walletOpen && (
-          <WalletModal
-            setWalletOpen={setWalletOpen}
-            connectWallet={connectWallet()}
-          />
-        )}
+
         <div style={{ position: "fixed", top: 0, right: 0, margin: "1rem" }}>
           <button
             onClick={() => {
-              setWalletOpen(true);
+              connectWallet();
             }}
             type="button"
             data-modal-target="crypto-modal"

@@ -5,13 +5,33 @@ import axios from "axios";
 import { useRouter } from "next/router";
 import WalletModal from "../../Components/WalletModal";
 import DoubleNavbar from "../../Components/DoubleNavbar";
-
+import { ethers } from "ethers";
+import Contract from "../../artifacts/contracts/Contract.sol/Contract.json";
 function Login() {
   const router = useRouter();
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
   const [modal, setModal] = useState(true);
   const [walletOpen, setWalletOpen] = useState(false);
+  const [contract, setContract] = useState(null);
+  const [contract2, setContract2] = useState(null);
+  const [reg, setReg] = useState(false);
+  const [provider, setProvider] = useState(null);
+  const [modalOpen, setModalOpen] = useState(false);
+  const [account, setAccount] = useState("");
+  const connectWallet = async () => {
+    if (window.ethereum) {
+      const provider = new ethers.providers.Web3Provider(window.ethereum);
+      const accounts = await window.ethereum.request({
+        method: "eth_requestAccounts",
+      });
+      const account = accounts[0];
+      setProvider(provider);
+      setAccount(account);
+    } else {
+      alert("Please install MetaMask to use this feature");
+    }
+  };
   const handleSubmit = (e) => {
     console.log("dd");
     e.preventDefault();
@@ -242,11 +262,11 @@ function Login() {
             </div>
           </div>
         )}
-        {walletOpen && <WalletModal setWalletOpen={setWalletOpen} />}
+
         <div style={{ position: "fixed", top: 0, right: 0, margin: "1rem" }}>
           <button
             onClick={() => {
-              setWalletOpen(true);
+              connectWallet();
             }}
             type="button"
             data-modal-target="crypto-modal"

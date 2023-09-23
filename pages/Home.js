@@ -46,7 +46,7 @@ const Home = () => {
             </div>
 
             <div className="text-container">
-              <h1 className="title">Poshblock</h1>
+              <h1 className="title">BlockVault</h1>
               <div>
                 <Typewriter
                   text="Welcome to our revolutionary document upload platform! Say goodbye to worries about document security and accessibility. With our cutting-edge technology, you can now upload your important documents onto the blockchain, ensuring the highest level of security and immutability. Our user-friendly interface makes the process seamless and hassle-free, allowing you to store, manage, and share your documents with confidence. Join us in embracing the future of document management, where security meets simplicity. Experience the power of blockchain and take control of your valuable files today."

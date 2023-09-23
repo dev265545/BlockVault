@@ -34,7 +34,7 @@ function Upload() {
   const [modalOpen, setModalOpen] = useState(false);
   const [file, setFile] = useState();
   const [DocLink, setDocLink] = useState();
-  const [encryptedData, setENData] = useState();
+  const [encryptedData, setENData] = useState("23293023");
   const [lawyers, setLawyers] = useState([]);
   const [clients, setClients] = useState([]);
   const [judges, setJudges] = useState([]);
@@ -139,8 +139,13 @@ function Upload() {
           const data = await response.json();
           console.log(data);
           setKeys(data);
-          if (data.encrypted_pdf_base64 !== undefined) {
+          if (data?.encrypted_pdf_base64 !== undefined) {
             setENData(JSON.stringify(data.encrypted_pdf_base64));
+            if (encryptedData) {
+              setENData(JSON.stringify(data.encrypted_pdf_base64));
+            } else {
+              setENData("fwneofnweon322323n32nd");
+            }
             // setkeys(data);
           }
         }
@@ -159,6 +164,7 @@ function Upload() {
         console.log("error");
 
         console.log(typeof encryptedData);
+
         await Moralis.start({
           apiKey:
             "0wHBHKM8cglyitH7wMPXle5DRpg45FYMlNPUuGVqrESDpW8SZKrtUfkxwXVdox9i",
@@ -303,6 +309,9 @@ function Upload() {
   // const handleSectionClick = (section) => {
   //   setCurrentSection(section);
   // };
+  // useEffect(() => {
+  //   setDocLink();
+  // }, [encryptedData]);
   return (
     <div className="flex bg-gray-900 min-h-screen">
       <div className="w-1/4 p-8 mt-20 relative">
@@ -344,13 +353,31 @@ function Upload() {
                   Add a New Court Case
                 </h2>
                 <form action="#">
-                  <div class="grid gap-4 sm:grid-cols-2 sm:gap-6">
-                    {/* <div class="sm:col-span-2">
+                  <div class="grid gap-4 sm:grid-cols-1 sm:gap-6">
+                    <div class="w-2/3 p-3">
+                      <label
+                        for="cnrnumber"
+                        class="block mb-2 w-full text-sm font-medium text-gray-900 dark:text-white"
+                      >
+                        Case Number Record
+                      </label>
+                      <input
+                        type="text"
+                        value={cnrNumber}
+                        onChange={(e) => setCnrNumber(e.target.value)}
+                        name="cnrnumber"
+                        id="cnrnumber"
+                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                        placeholder="Case Number Record"
+                        required=""
+                      />
+                    </div>
+                    <div class="sm:col-span-2">
                       <label
                         for="name"
                         class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
                       >
-                        CourtCase Name
+                        LawyerId
                       </label>
                       <input
                         type="text"
@@ -359,11 +386,11 @@ function Upload() {
                         name="name"
                         id="name"
                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-                        placeholder="Provide the Name of the Case"
+                        placeholder="lAWYERid"
                         required=""
                       />
-                    </div> */}
-                    <div className="w-full">
+                    </div>
+                    {/* <div className="w-full">
                       <label
                         htmlFor="lawyers"
                         className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
@@ -512,43 +539,40 @@ function Upload() {
                           </button>
                         </div>
                       ))}
-                    </div>
+                    </div> */}
 
                     <div class="w-full">
-                      <label
-                        for="cnrnumber"
-                        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-                      >
-                        Case Number Record
-                      </label>
-                      <input
-                        type="text"
-                        value={cnrNumber}
-                        onChange={(e) => setCnrNumber(e.target.value)}
-                        name="cnrnumber"
-                        id="cnrnumber"
-                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-                        placeholder="Case Number Record"
-                        required=""
-                      />
-                    </div>
-
-                    {/* <div class="w-full">
                       <label
                         for="LOHDate"
                         class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
                       >
-                        Last Hearing Date
+                        JudgeID
                       </label>
                       <input
-                        type="date"
+                        type="text"
                         value={lohDate}
                         onChange={(e) => setLohDate(e.target.value)}
                         name="LOHDate"
                         id="LOHDate"
                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
                       />
-                    </div> */}
+                    </div>
+                    <div class="w-full mb-5">
+                      <label
+                        for="LOHDate"
+                        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                      >
+                        AadharID
+                      </label>
+                      <input
+                        type="text"
+                        value={caseType}
+                        onChange={(e) => setCaseType(e.target.value)}
+                        name="LOHDate"
+                        id="LOHDate"
+                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                      />
+                    </div>
                     {/* <div>
                       <label
                         for="CaseType"

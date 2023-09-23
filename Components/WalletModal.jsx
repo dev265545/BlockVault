@@ -182,9 +182,7 @@ function WalletModal({ setWalletOpen, connectWallet }) {
                       />
                     </svg>
                     <span
-                      onClick={() => {
-                        connectWallet();
-                      }}
+                      onClick={connectWallet}
                       class="flex-1 ml-3 whitespace-nowrap"
                     >
                       MetaMask
